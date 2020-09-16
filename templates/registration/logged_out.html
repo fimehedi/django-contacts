@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Log Out
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2 class="heading font-weight-light text-center">Log Out</h2>
+    <hr>
+</div>
+<div class="container card w-25 p-4 mt-4">
+    <p class="font-weight-ligh text-center">
+    You have been logged out! <br>
+    You can <a href="{% url 'login' %}">Log In</a> again.
+    </p>
+</div>
+{% endblock content %}

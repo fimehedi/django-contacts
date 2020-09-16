@@ -1,0 +1,27 @@
+{% load static %}
+<div class="card my-2 mx-2 {% if contact.gender == 'male' %}boy-card{% else %}girl-card{% endif %}">
+    <img src="{% if contact.image %}
+        {{ contact.image.url }}
+        {% else %}
+        {% if contact.gender == 'male' %}{% static 'images/boy.png' %}{% else %}{% static 'images/girl.png' %}{% endif %}
+        {% endif %}" class="img-fluid" />
+    <div class="card-header">
+        <a href="{% url 'detail' contact.pk %}" class="text-white header-link">
+            {% if contact.gender == 'male' %}<i class="fas fa-mars mr-2"></i>{% else %}<i
+                class="fas fa-venus mr-2"></i>{% endif %}{{ contact.name }}</a>
+    </div>
+    <div class="card-body pb-0">
+        <p>
+            <i class="fas fa-at mr-2"></i>
+            <a href="mailto:{{ contact.email }}">{{ contact.email|slice:20|lower }}
+            {% if contact.email|length > 20 %}...{% endif %}
+            </a>
+        </p>
+        <p>
+            <i class="fas fa-phone mr-2"></i>
+            <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
+        </p>
+        <p><i class="fas fa-info-circle mr-2"></i> {{ contact.info }}</p>
+        <p><i class="fas fa-calendar mr-2" aria-hidden="true"></i> {{ contact.date }}</p>
+    </div>
+</div>

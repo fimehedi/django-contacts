@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+    <title>{% block title %}Contact{% endblock title %}</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+
+    <nav>
+        <a class="logo" href="{% url 'home' %}">
+            <i class="fas fa-user-circle"></i>&nbsp;Contacts
+        </a>
+        <div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="feature-link my-3 p-0 text-white">
+            <i class="fas fa-sign-out-alt    "></i>&nbsp; Log Out &nbsp;
+        </a>
+        <a href="{% url 'create' %}" class="feature-link my-3 p-0 text-white">
+            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Add Contact
+        </a>
+        {% else %}
+        <a href="{% url 'signup' %}" class="feature-link my-3 p-0 text-white">
+            <i class="fas fa-sign-in-alt    "></i>&nbsp; Sign Up &nbsp;
+        </a>
+        <a href="{% url 'login' %}" class="feature-link my-3 p-0 text-white">
+            <i class="fas fa-sign-in-alt    "></i>&nbsp; Log In &nbsp;
+        </a>
+        {% endif %}
+
+        </div>
+        <form class="form-inline m-0 my-md-2" action="{% url 'search' %}" method="GET">
+            <input class="form-control search-box" type="text" value="{{ search_term }}" name="search_term" placeholder="Find contacts..." />
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </nav>
+    <!-- Navbar ends -->
+    <br />
+    {% include 'partials/_message.html' %}
+
+    <main>
+    {% block content %}
+    {% endblock content %}
+    </main>
+
+    <!-- footer -->
+    <footer class="mt-4 p-2">
+        <p class="text-center p-1 m-0">&copy; My Contacts 2019</p>
+    </footer>
+    <!-- footer ends -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

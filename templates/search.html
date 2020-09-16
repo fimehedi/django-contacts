@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Search results for {{ search_term }}{% endblock title %}
+
+{% block content %}
+<!-- Main Section -->
+<div class="container">
+  <h3 class="heading font-weight-light">Search results for "{{ search_term }}"</h3>
+  <hr />
+</div>
+
+<div class="container main-part">
+  <!-- Card for details -->
+  {% for contact in contacts %}
+  {% include 'partials/_card.html' %}
+  {% empty %}
+  <p class="text-mute">No search found!</p>
+  {% endfor %}
+  <!-- Card for details ends -->
+</div>
+<!-- Main Section ends-->
+{% endblock content %}

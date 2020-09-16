@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Main Section -->
+{% block content %}
+<div class="container">
+  <h3 class="heading font-weight-light">
+  {% if user.is_authenticated %}
+  Hi, {{ user.username }}! Here are your contacts.
+  {% else %}
+  You're not logged In.
+  {% endif %}
+  </h3>
+  <hr />
+</div>
+
+<div class="container main-part">
+
+  <!-- Card for details -->
+  {% for contact in contacts %}
+  {% include 'partials/_card.html' %}
+  {% empty %}
+  <p class="text-mute">No contacts found!</p>
+  {% endfor %}
+  <!-- Card for details ends -->
+
+</div>
+{% endblock content %}
+<!-- Main Section ends-->

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Delete Contact
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2 class="heading font-weight-light text-center">Contact update for "{{ contact }}"</h2>
+    <hr>
+</div>
+<div class="container card w-25 p-4 mt-4">
+    <form action="" method="post" enctype="multipart/form-data" autocomplete="off"    >
+        {% csrf_token %}
+        <input type="submit" value="Delete" class="w-100 btn btn-danger mt-2">
+    </form>
+</div>
+{% endblock content %}
